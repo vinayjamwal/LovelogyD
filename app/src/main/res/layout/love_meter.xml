@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ColorPrimary"
+    >
+    <LinearLayout android:id="@+id/email_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <EditText android:id="@+id/first_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter first person name"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="#ffffffff"
+            android:textColor="#ffffffff" />
+
+        <EditText android:id="@+id/second_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter first person name"
+            android:imeOptions="actionUnspecified"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="#ffffffff"
+            android:textColor="#ffffffff" />
+
+        <Button android:id="@+id/cal_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Calculate"
+            android:textStyle="bold"
+            android:textColor="#ffffffff"
+            android:background="#ff7e51c2" />
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wheel"
+            android:layout_gravity="center"
+            android:id="@+id/wheel"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/needle"
+            android:src="@drawable/needle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="56dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/heart"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/love_percentage"
+        android:layout_marginTop="4dp"
+        android:text=""
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"/>
+
+
+
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@android:drawable/ic_menu_share"
+           android:layout_centerVertical="true"
+           android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

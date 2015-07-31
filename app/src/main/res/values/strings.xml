@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">LovelogyD</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="openDrawer">Open</string>
+    <string name="closeDrawer">Close</string>
+
+    <string-array name="nav_drawer_items">
+        <item>Love Quotes</item>
+        <item>Love Gyan</item>
+        <item>Horoscope</item>
+        <item>Love Meter</item>
+    </string-array>
+</resources>

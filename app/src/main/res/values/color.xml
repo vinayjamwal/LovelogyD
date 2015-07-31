@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="splash">#292e4e</color>
+    <color name="harkuch">#c4df9b</color>
+
+    <color name="ColorPrimary">#e50051</color>
+    <color name="ColorPrimaryDark">#ad013e</color>
+    <color name="tabsScrollColor">#F8BBD0</color>
+</resources>
