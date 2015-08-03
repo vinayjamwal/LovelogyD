@@ -2,12 +2,10 @@ package com.lovelogy.virtuoso.lovelogyd;
 
 
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lovelogy.virtuoso.horoscope.Horoscope;
+import com.lovelogy.virtuoso.lovegyan.LoveGyan;
+import com.lovelogy.virtuoso.lovemeter.LoveMeter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +27,12 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    ViewPagerAdapter adapter;
 private Toolbar mToolbar;
 private DrawerLayout mDrawerLayout;
 private ActionBarDrawerToggle mDrawerToggle;
 private ListView mLvDrawerMenu;
 private TextView mTitle;
-ViewPagerAdapter adapter;
 private DrawerMenuItemAdapter mDrawerMenuAdapter;
 
 

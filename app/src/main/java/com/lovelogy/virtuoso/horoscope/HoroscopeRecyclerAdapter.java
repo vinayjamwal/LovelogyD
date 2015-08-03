@@ -1,4 +1,4 @@
-package com.lovelogy.virtuoso.lovelogyd;
+package com.lovelogy.virtuoso.horoscope;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,9 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.lovelogy.virtuoso.lovelogyd.FeedItem;
+import com.lovelogy.virtuoso.lovelogyd.R;
 
 import java.util.List;
 

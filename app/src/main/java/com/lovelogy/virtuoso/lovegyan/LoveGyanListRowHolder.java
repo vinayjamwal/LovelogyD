@@ -1,9 +1,10 @@
-package com.lovelogy.virtuoso.lovelogyd;
+package com.lovelogy.virtuoso.lovegyan;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.lovelogy.virtuoso.lovelogyd.R;
 
 /**
  * Created by Virtuoso on 7/16/2015.

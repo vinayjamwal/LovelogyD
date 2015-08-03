@@ -1,9 +1,11 @@
-package com.lovelogy.virtuoso.lovelogyd;
+package com.lovelogy.virtuoso.horoscope;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.lovelogy.virtuoso.lovelogyd.R;
 
 /**
  * Created by Virtuoso on 7/14/2015.

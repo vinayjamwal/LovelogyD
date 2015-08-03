@@ -1,7 +1,6 @@
-package com.lovelogy.virtuoso.lovelogyd;
+package com.lovelogy.virtuoso.lovemeter;
 
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.lovelogy.virtuoso.lovelogyd.R;
 
 import java.util.Random;
 
@@ -27,18 +26,14 @@ import java.util.Random;
  */
 public class LoveMeter extends Fragment {
 
+    static String male, female;
     protected EditText firstperson,secoundperson;
     protected ImageView dilvil,wheel;
     protected Button calculate;
-    static String male,female;
     protected  TextView percentage;
     int state=0,count_t=0,rotation=0,amount;
     Random random;
     Animation animation=null;
-    public LoveMeter() {
-        // Required empty public constructor
-    }
-
     Handler handler=new Handler(){
         public void handleMessage(Message m)
         {
@@ -63,6 +58,10 @@ public class LoveMeter extends Fragment {
             percentage.setText(count_t+"%");
         }
     };
+
+    public LoveMeter() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

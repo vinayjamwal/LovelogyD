@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.lovelogy.virtuoso.utilities.NetworkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,13 +67,36 @@ public class Motivation extends Fragment {
 
             new MaterialDialog.Builder(getActivity())
                     .title("Alert")
-                    .content("Please check yout interney connectivity")
+                    .content("Please check your internet connectivity")
                     .positiveText("Done")
                     .show();
         }
 
 
         return v;
+    }
+
+    private void parseResult(String result) {
+        try {
+            JSONObject response = new JSONObject(result);
+            JSONArray posts = response.optJSONArray("quotes");
+
+            /*Initialize array if null*/
+            if (null == feedItemList) {
+                feedItemList = new ArrayList<FeedItem>();
+            }
+
+            for (int i = 0; i < posts.length(); i++) {
+                JSONObject post = posts.optJSONObject(i);
+
+                FeedItem item = new FeedItem();
+                item.setTitle(post.optString("SrNo"));
+                item.setThumbnail(post.optString("Title"));
+                feedItemList.add(item);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public class AsyncHttpTask extends AsyncTask<String, Void, Integer> {
@@ -137,29 +161,6 @@ public class Motivation extends Fragment {
             } else {
                 Log.e(TAG, "Failed to fetch data!");
             }
-        }
-    }
-
-    private void parseResult(String result) {
-        try {
-            JSONObject response = new JSONObject(result);
-            JSONArray posts = response.optJSONArray("quotes");
-
-            /*Initialize array if null*/
-            if (null == feedItemList) {
-                feedItemList = new ArrayList<FeedItem>();
-            }
-
-            for (int i = 0; i < posts.length(); i++) {
-                JSONObject post = posts.optJSONObject(i);
-
-                FeedItem item = new FeedItem();
-                item.setTitle(post.optString("SrNo"));
-                item.setThumbnail(post.optString("Title"));
-                feedItemList.add(item);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 

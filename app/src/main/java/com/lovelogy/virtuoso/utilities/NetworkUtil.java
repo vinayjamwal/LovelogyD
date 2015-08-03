@@ -1,4 +1,4 @@
-package com.lovelogy.virtuoso.lovelogyd;
+package com.lovelogy.virtuoso.utilities;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -32,6 +32,22 @@ public class NetworkUtil {
         return TYPE_NOT_CONNECTED;
     }
 
+    public static boolean getConnectivityStatusString(Context context) {
+        int conn = NetworkUtil.getConnectivityStatus(context);
+        String status = null;
+
+        if (conn == NetworkUtil.TYPE_WIFI) {
+            status = "Wifi enabled";
+            return true;
+        } else if (conn == NetworkUtil.TYPE_MOBILE) {
+            status = "Mobile data enabled";
+            return true;
+        } else if (conn == NetworkUtil.TYPE_NOT_CONNECTED) {
+            status = "Not connected to Internet";
+            return false;
+        }
+        return false;
+    }
 
     /**
      * Check for <code>TYPE_WIFI</code> and <code>TYPE_MOBILE</code> connection using <code>isConnected()</code>
@@ -54,26 +70,6 @@ public class NetworkUtil {
         }
         catch(Exception e){
             System.out.println("CheckConnectivity Exception: " + e.getMessage());
-        }
-        return false;
-    }
-
-    public static boolean getConnectivityStatusString(Context context) {
-        int conn = NetworkUtil.getConnectivityStatus(context);
-        String status = null;
-
-        if (conn == NetworkUtil.TYPE_WIFI)
-        {
-            status = "Wifi enabled";
-            return true;
-        } else if (conn == NetworkUtil.TYPE_MOBILE)
-        {
-            status = "Mobile data enabled";
-            return true;
-        } else if (conn == NetworkUtil.TYPE_NOT_CONNECTED)
-        {
-            status = "Not connected to Internet";
-            return false;
         }
         return false;
     }

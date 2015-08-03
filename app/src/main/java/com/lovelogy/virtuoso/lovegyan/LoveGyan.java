@@ -1,5 +1,4 @@
-package com.lovelogy.virtuoso.lovelogyd;
-
+package com.lovelogy.virtuoso.lovegyan;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -13,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.lovelogy.virtuoso.lovelogyd.FeedItem;
+import com.lovelogy.virtuoso.lovelogyd.R;
+import com.lovelogy.virtuoso.utilities.NetworkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,34 +31,53 @@ import java.util.List;
 /**
  * Created by Virtuoso on 7/8/2015.
  */
-public class Horoscope extends Fragment {
+public class LoveGyan extends Fragment {
 
     private static final String TAG = "Lovelogy";
+    int foo;
+    String url;
     private List<FeedItem> feedItemList = new ArrayList<FeedItem>();
     private RecyclerView mRecyclerView;
-    private HoroscopeRecyclerAdapter adapter;
+    //private MyRecyclerAdapter adapter;
+    private LoveGyanRecylerAdapter adapter;
     private ProgressDialog pd;
+    //private SwipeRefreshLayout swipe;
+    private int offSet = 0;
     private NetworkUtil networkUtil;
     private boolean conn;
 
-    public Horoscope() {
+
+    public LoveGyan() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.activity_feeds_list,container,false);
 
         /* Initialize recyclerview */
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        final String url = "http://122.176.20.125/Loveology/lovology_horo.jsp";
+        //swipe=(SwipeRefreshLayout)v.findViewById(R.id.swipe_refresh_layout);
 
         networkUtil=new NetworkUtil();
         conn=networkUtil.checkNow(getActivity());
+
+       url = "http://122.176.20.125/Loveology/lovology_Images.jsp";
+
+       /* swipe.post(new Runnable() {
+                       @Override
+                       public void run() {
+                           swipe.setRefreshing(true);
+
+                           new AsyncHttpTask().execute(url);
+
+                       }
+                   }
+        );*/
+
 
         if(conn==true) {
 
@@ -70,10 +91,35 @@ public class Horoscope extends Fragment {
                     .show();
         }
 
-
-
-
         return v;
+    }
+
+    private void parseResult(String result) {
+        try {
+            JSONObject response = new JSONObject(result);
+            JSONArray posts = response.optJSONArray("Images");
+
+            /*Initialize array if null*/
+            if (null == feedItemList) {
+                feedItemList = new ArrayList<FeedItem>();
+            }
+
+            for (int i = 0; i < posts.length(); i++) {
+                JSONObject post = posts.optJSONObject(i);
+
+                FeedItem item = new FeedItem();
+                item.setTitle(post.optString("SrNo"));
+                item.setThumbnail(post.optString("Link"));
+
+                foo = Integer.parseInt(item.getTitle());
+                if (foo >= offSet)
+                    offSet = foo;
+
+                feedItemList.add(item);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public class AsyncHttpTask extends AsyncTask<String, Void, Integer> {
@@ -81,7 +127,7 @@ public class Horoscope extends Fragment {
         @Override
         protected void onPreExecute() {
             // setProgressBarIndeterminateVisibility(true);
-            pd= ProgressDialog.show(getActivity(), "Please Wait", "");
+            pd= ProgressDialog.show(getActivity(),"Please Wait","");
         }
 
         @Override
@@ -112,6 +158,9 @@ public class Horoscope extends Fragment {
                     }
 
                     parseResult(response.toString());
+
+
+
                     result = 1; // Successful
                 }else{
                     result = 0; //"Failed to fetch data!";
@@ -133,34 +182,17 @@ public class Horoscope extends Fragment {
 
             /* Download complete. Lets update UI */
             if (result == 1) {
-                adapter = new HoroscopeRecyclerAdapter(getActivity(), feedItemList);
+
+                //adapter = new MyRecyclerAdapter(getActivity(), feedItemList);
+                adapter = new LoveGyanRecylerAdapter(getActivity(), feedItemList);
                 mRecyclerView.setAdapter(adapter);
+
+
+               // swipe.setRefreshing(false);
+
             } else {
                 Log.e(TAG, "Failed to fetch data!");
             }
-        }
-    }
-
-    private void parseResult(String result) {
-        try {
-            JSONObject response = new JSONObject(result);
-            JSONArray posts = response.optJSONArray("horo");
-
-            /*Initialize array if null*/
-            if (null == feedItemList) {
-                feedItemList = new ArrayList<FeedItem>();
-            }
-
-            for (int i = 0; i < posts.length(); i++) {
-                JSONObject post = posts.optJSONObject(i);
-
-                FeedItem item = new FeedItem();
-                item.setTitle(post.optString("SrNo"));
-                item.setThumbnail(post.optString("Title"));
-                feedItemList.add(item);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 

@@ -1,8 +1,9 @@
 /**
  * 
  */
-package com.lovelogy.virtuoso.lovelogyd;
-import java.util.*;
+package com.lovelogy.virtuoso.lovemeter;
+
+import java.util.Vector;
 
 /**
  * @author Pradeep
