@@ -1,7 +1,6 @@
-package com.lovelogy.virtuoso.lovelogyd;
+package com.lovelogy.virtuoso.Lovemeter;
 
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.lovelogy.virtuoso.lovelogyd.R;
 
 import java.util.Random;
 
