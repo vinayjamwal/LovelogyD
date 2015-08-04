@@ -3,13 +3,14 @@ package com.lovelogy.virtuoso.lovelogyd;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lovelogy.virtuoso.utilities.SlidingTabLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Virtuoso on 7/2/2015.
@@ -17,8 +18,39 @@ import com.lovelogy.virtuoso.utilities.SlidingTabLayout;
 public class MainLoveClass extends Fragment {
 
 
-    Toolbar toolbar;
-    ViewPager pager;
+    RecyclerView mRecyclerView;
+    List<Items> list;
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_lovequotes, container, false);
+
+
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.masonry_grid);
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+
+        list = new ArrayList<Items>();
+        list.add(new Items(R.drawable.one, "one"));
+        list.add(new Items(R.drawable.two, "two"));
+        list.add(new Items(R.drawable.three, "three"));
+        list.add(new Items(R.drawable.four, "four"));
+        list.add(new Items(R.drawable.five, "five"));
+
+
+        MasonryAdapter adapter = new MasonryAdapter(getActivity(), list);
+        mRecyclerView.setAdapter(adapter);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        mRecyclerView.addItemDecoration(decoration);
+
+
+        return v;
+    }
+}
+
+
+    /*ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Romance", "Friendship", "Inspiration", "Motivation","Broken"};
@@ -60,7 +92,5 @@ public class MainLoveClass extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-    }
+    }*/
 
-
-}
